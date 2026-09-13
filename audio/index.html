@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>310T Exam Prep: Audio Companion</title>
+  <style>
+    :root {
+      --blue:   #1B3A6B;
+      --teal:   #0A7E8C;
+      --ltblue: #E8F4F8;
+      --white:  #FFFFFF;
+      --text:   #1A1A1A;
+      --muted:  #666;
+      --radius: 12px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: linear-gradient(135deg, var(--blue) 0%, var(--teal) 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1.75rem 1rem 2.5rem;
+    }
+    header { text-align: center; color: #fff; margin-bottom: 1.25rem; }
+    header .brand { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; opacity: 0.8; text-transform: uppercase; }
+    header h1 { font-size: 1.4rem; font-weight: 800; margin-top: 0.2rem; }
+    header .subtitle { font-size: 0.85rem; opacity: 0.8; margin-top: 0.3rem; max-width: 520px; }
+
+    main {
+      width: 100%; max-width: 640px;
+      display: flex; flex-direction: column; gap: 0.85rem;
+    }
+    .chapter-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 1rem 1.1rem;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+    }
+    .chapter-card .num {
+      display: inline-block;
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em;
+      color: var(--teal); text-transform: uppercase;
+      margin-bottom: 0.2rem;
+    }
+    .chapter-card h2 {
+      font-size: 1.02rem; color: var(--text); margin-bottom: 0.6rem;
+      line-height: 1.3;
+    }
+    .chapter-card audio {
+      width: 100%; display: block;
+      height: 38px;
+    }
+    footer {
+      color: rgba(255,255,255,0.75); font-size: 0.75rem;
+      text-align: center; margin-top: 1.75rem; max-width: 520px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">Uprising Test Prep</div>
+    <h1>310T Exam Prep: Audio Companion</h1>
+    <div class="subtitle">Listen to every theory chapter read aloud. Great for review during a highway run or a shift break.</div>
+  </header>
+  <main id="chapter-list"></main>
+  <footer>Tap play on any chapter below. Audio streams directly in your browser, no app or download required.</footer>
+
+  <script>
+    const CHAPTERS = [
+      { n: 1, title: "Common Occupational Skills", file: "ch1_common_occupational_skills.m4a" },
+      { n: 2, title: "Engines and Supporting Systems", file: "ch2_engines_and_supporting_systems.m4a" },
+      { n: 3, title: "Air and Brake Systems", file: "ch3_air_and_brake_systems.m4a" },
+      { n: 4, title: "Electrical and Electronic Systems", file: "ch4_electrical_and_electronic_systems.m4a" },
+      { n: 5, title: "Drive Trains", file: "ch5_drive_trains.m4a" },
+      { n: 6, title: "Steering, Chassis, Suspensions, Tires, Wheels and Hubs", file: "ch6_steering_chassis_suspensions_tires_wheels_and_hubs.m4a" },
+      { n: 7, title: "Cabs and Trailers", file: "ch7_cabs_and_trailers.m4a" },
+      { n: 8, title: "Climate Control and Hydraulic Systems", file: "ch8_climate_control_and_hydraulic_systems.m4a" },
+      { n: 9, title: "Hybrid and Electric Vehicles", file: "ch9_hybrid_and_electric_vehicles.m4a" },
+    ];
+
+    const list = document.getElementById("chapter-list");
+    for (const ch of CHAPTERS) {
+      const card = document.createElement("div");
+      card.className = "chapter-card";
+      card.innerHTML = `
+        <div class="num">Chapter ${ch.n}</div>
+        <h2>${ch.title}</h2>
+        <audio controls preload="none" src="${ch.file}"></audio>
+      `;
+      list.appendChild(card);
+    }
+  </script>
+</body>
+</html>
